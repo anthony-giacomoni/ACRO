@@ -1,0 +1,20 @@
+{
+  "type": "real_issue_market_comparable_not_a_pricing_config",
+  "source_date": "2024-06-26",
+  "issuer": "Morgan Stanley Finance LLC",
+  "guarantor": "Morgan Stanley",
+  "underlyings": ["ABNB", "AMZN", "NVDA"],
+  "coupon_rate_annual_conditional": 0.18,
+  "coupon_frequency": "monthly",
+  "coupon_barrier": 0.60,
+  "initial_autocall_noncall_period_months": 3,
+  "autocall_frequency_after_noncall": "monthly",
+  "autocall_trigger": 1.0,
+  "maturity_date": "2027-07-01",
+  "capital_barrier_at_maturity": 0.60,
+  "issue_price_usd": 1000.0,
+  "issuer_estimated_value_usd": 948.50,
+  "agent_commission_usd": 45.0,
+  "source_url": "https://www.sec.gov/Archives/edgar/data/895421/000183988224020018/ms2759_424b2-12083.htm",
+  "important_note": "Real issuance for qualitative comparison ONLY. ACRO parameters are synthetic, not calibrated on ABNB/AMZN/NVDA. Do not load this file as project config.json."
+}

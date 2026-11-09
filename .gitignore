@@ -1,0 +1,32 @@
+# Python / local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+*.egg-info/
+.ipynb_checkpoints/
+
+# Local runs and exported data
+GUI_RUNS/
+RESULTATS_DEMO/
+results/
+results_*/
+*.log
+
+# IDE / OS
+.spyproject/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Credentials and personal local files
+*credentials*
+*secrets*
+*.token
+*.cookie
+*.session
+Texte collé*

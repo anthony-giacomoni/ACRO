@@ -1,0 +1,8 @@
+{
+  "coupon_fixed": 0.18,
+  "live_time_years": 1.0,
+  "live_spot_ratios": [0.88, 0.92, 0.84],
+  "live_logvol_factor": 0.05,
+  "missed_coupons": 0,
+  "spot_bump_fraction": 0.01
+}

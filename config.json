@@ -1,0 +1,88 @@
+{
+  "initial_coupon_policy": "fair",
+  "market": {
+    "initial_spots": [
+      100,
+      85,
+      120
+    ],
+    "volatilities": [
+      0.23,
+      0.26,
+      0.28
+    ],
+    "dividends": [
+      0.02,
+      0.025,
+      0.03
+    ],
+    "correlations": [
+      [
+        1,
+        0.5,
+        0.35
+      ],
+      [
+        0.5,
+        1,
+        0.45
+      ],
+      [
+        0.35,
+        0.45,
+        1
+      ]
+    ],
+    "risk_free_rate": 0.025,
+    "dynamics": "stochastic_vol",
+    "initial_logvol_factor": 0.0,
+    "factor_mean": 0.0,
+    "factor_reversion": 1.4,
+    "factor_volatility": 0.3,
+    "equity_factor_correlation": -0.65
+  },
+  "initial_phoenix": {
+    "maturity_years": 5,
+    "nominal": 100,
+    "observations_per_year": 2,
+    "coupon_rate": 0.12,
+    "coupon_barrier": 0.7,
+    "memory": false,
+    "autocall_enabled": true,
+    "first_autocall_year": 1,
+    "autocall_every_years": 1,
+    "autocall_barrier": 1.0,
+    "capital_barrier": 0.6,
+    "capital_barrier_monitoring": "european",
+    "basket_rule": "worst_of"
+  },
+  "renewal_phoenix": {
+    "maturity_years": 5,
+    "nominal": 100,
+    "observations_per_year": 2,
+    "coupon_rate": 0.12,
+    "coupon_barrier": 0.7,
+    "memory": false,
+    "autocall_enabled": true,
+    "first_autocall_year": 1,
+    "autocall_every_years": 1,
+    "autocall_barrier": 1.0,
+    "capital_barrier": 0.6,
+    "capital_barrier_monitoring": "european",
+    "basket_rule": "worst_of"
+  },
+  "acro": {
+    "strike": 100,
+    "renewal_units": 1,
+    "last_eligible_call_year": 4,
+    "target_coupon_rate": null
+  },
+  "simulation": {
+    "steps_per_year": 12,
+    "quote_paths": 24000,
+    "outer_paths": 10000,
+    "conditional_paths": 24000,
+    "curve_nodes": 15,
+    "seed": 20261105
+  }
+}
