@@ -1,0 +1,62 @@
+name: Python tests and pricing smoke checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      MPLBACKEND: Agg
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip check
+      - name: Run tests
+        run: python -m pytest -q
+      - name: Run headless pricing demonstration
+        run: python run_demo.py --quick --no-sensitivity --output results_ci
+      - name: Check outputs
+        run: |
+          python - <<'PY'
+          import json, math
+          from pathlib import Path
+          metrics = json.loads(Path("results_ci/metrics.json").read_text())
+          assert math.isfinite(metrics["acro_price"]) and metrics["acro_price"] >= 0
+          assert math.isfinite(metrics["annual_coupon"]) and metrics["annual_coupon"] > 0
+          assert metrics["pricing_method"] == "gbm_cv"
+          assert Path("results_ci/summary.md").is_file()
+          print("Headless pricing output is finite; numerical accuracy is not certified.")
+          PY
+      - name: Reproduce quick premium diagnostics
+        run: python -m research.reproduce_premium --quick --output results_premium_ci
+      - name: Validate diagnostic files
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("results_premium_ci")
+          d = json.loads((p / "summary.json").read_text())
+          assert d["independent_banks"] >= 3
+          assert not d["total_pricing_error_bounded"]
+          assert d["fair_coupon_controlled"]["large"]["premium"]["mean"] >= 0
+          assert set(d["fixed_18pct_direct"]) == {"12", "48"}
+          assert (p / "fair_coupon_banks.csv").is_file()
+          assert (p / "direct_fixed18_banks.csv").is_file()
+          print("Diagnostics generated; sampling intervals are partial, not full error bounds.")
+          PY
