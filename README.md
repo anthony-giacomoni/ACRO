@@ -71,4 +71,6 @@ The model has not been calibrated to a live equity volatility surface, dividend 
 
 I have tested the implementation and studied several sensitivity and convergence cases, but those checks are not a substitute for independent model validation. Development and technical reviews also involved AI assistance. I treat ACRO as a research exercise in structured-product design and pricing, not a production pricer.
 
+For independently seeded premium diagnostics (and a discussion of what their error bars do **not** establish), see [Numerical checks](notes/NUMERICAL_CHECKS.md). The quick exercise is a reproducibility check, not a proof of cent-level precision.
+
 The code is shared for educational purposes and is not investment advice.
